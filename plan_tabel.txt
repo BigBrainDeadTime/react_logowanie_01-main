@@ -15,7 +15,6 @@
 1.ID
 2.ID_Zdającego						#Wyniki#
 3.Wynik
-4.Czas ukończenia
 ---------------------------
 
 
