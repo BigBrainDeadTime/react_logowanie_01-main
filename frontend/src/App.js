@@ -21,6 +21,7 @@ const App = () => {
   return (
     <div className='main'>
       {loggedInUser ? (
+        
         <div>
           <h3>Witaj {loggedInUser.name} {loggedInUser.surname}  </h3>
           <button onClick={handleLogout}>Wyloguj </button>
