@@ -74,13 +74,15 @@ app.listen(8081, () => {
 });
 
 
-app.post("/pytania", (req, res) => {
+app.get("/pytania", (req, res) => {
     const sql = "SELECT Id, Pytanie, Odpowiedz, A, B, C, D FROM pytania ";
     db.query(sql, [req.body.Pytanie], (err, data) => {
       if (err) return res.json({ success: false, message: "Błąd Pobierania" });
       if (data.length > 0) {
         console.log(data);
-        return res.json({
+        array.forEach(id => {
+          return res.json([{
+          
             success: true,
             Pytanie: data[0].Pytanie,
             Id: data[0].Id,
@@ -88,10 +90,9 @@ app.post("/pytania", (req, res) => {
             A: data[0].A,
             B: data[0].B,
             C: data[0].C,
-            D: data[0].D
-            
-          
-        });
+            D: data[0].D,
+        }]);
+      });
       } else return res.json({ success: false, message: "Błędny pobierania2!" });
     });
   });
