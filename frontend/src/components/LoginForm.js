@@ -1,4 +1,6 @@
 import { useState} from "react";
+import { Link, redirect } from "react-router-dom";
+import bcrypt from 'bcryptjs';
 
 const LoginForm = ({ onLogin }) => {
     const [error, setError] = useState('')
@@ -21,7 +23,7 @@ const LoginForm = ({ onLogin }) => {
                 const res = await response.json();
                 console.log(res); 
                 if(res.success){
-                    onLogin({ name: res.data[0].name, surname: res.data[0].surname })              
+                    onLogin({ name: res.name, surname: res.surname , id:res.id})              
                 }
                 else{
                     setError(res.message);
@@ -41,10 +43,11 @@ const LoginForm = ({ onLogin }) => {
             </label>
             <label>
                 Hasło:<br />
-                <input type="password" value={password} onChange={(e) => setPassword(e.target.value)}  id="surname" name="surname" autoComplete="on" placeholder="Hasło"/> <br /> <br />
+                <input type="password" value={password} onChange={(e) => setPassword(e.target.value)}  id="password" name="password" autoComplete="on" placeholder="Hasło"/> <br /> <br />
             </label>
             <button type="submit">Zaloguj</button>
             <p className="error">{error}</p>
+            <Link to="/">Strona główna</Link>
         </form>
     )
 
